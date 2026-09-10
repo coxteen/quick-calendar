@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Quick Calendar",
+  title: "quick-calendar",
   manifest: "/manifest.json",
 };
 

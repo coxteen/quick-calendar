@@ -1,6 +1,6 @@
 {
-  "name": "Quick Calendar Add",
-  "short_name": "CalAdd",
+  "name": "quick-calendar",
+  "short_name": "quick-calendar",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#171717",
