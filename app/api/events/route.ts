@@ -3,28 +3,36 @@ import { google } from "googleapis";
 
 interface CreateEventPayload {
   title: string;
-  description?: string;
-  location?: string;
+  description: string;
+  location: string;
   startTime: string; // ISO 8601 string
-  durationMinutes?: number;
+  durationMinutes: number;
 }
 
 function validatePayload(body: any): { valid: boolean; error?: string } {
-  if (!body.title || typeof body.title !== "string") {
+  if (!body.title || typeof body.title !== "string" || !body.title.trim()) {
     return { valid: false, error: "Câmpul 'title' este obligatoriu." };
   }
   if (!body.startTime || isNaN(Date.parse(body.startTime))) {
     return { valid: false, error: "Format invalid pentru 'startTime'." };
+  }
+  if (!body.durationMinutes || body.durationMinutes <= 0) {
+    return { valid: false, error: "Durata trebuie să fie mai mare de 0." };
+  }
+  if (!body.description || typeof body.description !== "string" || !body.description.trim()) {
+    return { valid: false, error: "Descrierea este obligatorie." };
+  }
+  if (!body.location || typeof body.location !== "string" || !body.location.trim()) {
+    return { valid: false, error: "Locația este obligatorie." };
   }
   return { valid: true };
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // 1. Verificare protecție token (să nu îți poată apela oricine endpoint-ul public)
     const authHeader = request.headers.get("x-api-key");
-    if (authHeader !== process.env.API_SECRET_KEY) {
-      return NextResponse.json({ error: "Neautorizat" }, { status: 401 });
+    if (!authHeader || authHeader !== process.env.API_SECRET_KEY) {
+      return NextResponse.json({ error: "Neautorizat: API Key incorect." }, { status: 401 });
     }
 
     const body: CreateEventPayload = await request.json();
@@ -33,14 +41,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: validation.error }, { status: 400 });
     }
 
-    // 2. Inițializare Google Auth
     const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
     const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
     const calendarId = process.env.GOOGLE_CALENDAR_ID;
 
     if (!clientEmail || !privateKey || !calendarId) {
       return NextResponse.json(
-        { error: "Configurație server incompletă." },
+        { error: "Configurație server Google Calendar incompletă." },
         { status: 500 }
       );
     }
@@ -53,20 +60,18 @@ export async function POST(request: NextRequest) {
 
     const calendar = google.calendar({ version: "v3", auth });
 
-    // 3. Calcul interval orar
     const start = new Date(body.startTime);
-    const duration = body.durationMinutes && body.durationMinutes > 0 ? body.durationMinutes : 60;
-    const end = new Date(start.getTime() + duration * 60 * 1000);
+    const end = new Date(start.getTime() + body.durationMinutes * 60 * 1000);
 
-    // 4. Creare eveniment
     const response = await calendar.events.insert({
       calendarId,
       requestBody: {
-        summary: body.title,
-        description: body.description ?? "",
-        location: body.location ?? "",
+        summary: body.title.trim(),
+        description: body.description.trim(),
+        location: body.location.trim(),
         start: { dateTime: start.toISOString() },
         end: { dateTime: end.toISOString() },
+        colorId: "11", // ID 11 reprezinta culoarea Tomato (Rosu)
       },
     });
 
