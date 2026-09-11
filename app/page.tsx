@@ -14,7 +14,7 @@ export default function Home() {
     <main className="min-h-screen bg-neutral-950 text-neutral-100 flex items-center justify-center p-4">
       <div className="w-full max-w-lg bg-neutral-900 p-6 rounded-2xl shadow-xl border border-neutral-800 my-8">
         <h1 className="text-xl font-bold mb-6 text-center text-neutral-100 tracking-wide">
-          quick-calendar
+          Adaugă un eveniment în calendar
         </h1>
 
         <form onSubmit={actions.handleSubmit} className="space-y-5" noValidate>
