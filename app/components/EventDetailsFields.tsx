@@ -38,7 +38,7 @@ export function EventDetailsFields({
         <div className="flex gap-2 items-center">
           <input
             type="text"
-            placeholder="Nume contact (ex: Andrei Popescu)"
+            placeholder="ex: Costin"
             value={contactName}
             onChange={(e) => onContactNameChange(e.target.value)}
             className={`${theme.inputs.base} flex-1`}
@@ -51,7 +51,7 @@ export function EventDetailsFields({
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
-            placeholder="07xxxxxxxx"
+            placeholder="ex: 07xxxxxxxx"
             value={phone}
             onChange={(e) => onPhoneChange(e.target.value)}
             className={`${theme.inputs.base} flex-1`}
