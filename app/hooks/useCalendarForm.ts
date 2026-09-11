@@ -9,6 +9,7 @@ export function useCalendarForm() {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
+  const [contactName, setContactName] = useState("");
   const [phone, setPhone] = useState("");
   const [scheduleItems, setScheduleItems] = useState<ScheduleItem[]>([
     { location: "", timeSlot: "" },
@@ -68,6 +69,7 @@ export function useCalendarForm() {
       !eventDate ||
       !startTime ||
       !endTime ||
+      !contactName.trim() ||
       !phone.trim() ||
       hasEmptySchedule ||
       !price.trim() ||
@@ -85,7 +87,6 @@ export function useCalendarForm() {
       return;
     }
 
-    // Daca ora de final este mai mica decat ora de start (ex: 22:00 -> 04:00), adaugam 1 zi
     if (endDateTime <= startDateTime) {
       endDateTime.setDate(endDateTime.getDate() + 1);
     }
@@ -98,8 +99,9 @@ export function useCalendarForm() {
       .map((item) => `${item.location.trim()} ---> ${item.timeSlot.trim()}`)
       .join("\n");
 
+    // Format descriere cu Contact (Nume ---> Numar de telefon)
     const formattedDescription = [
-      `Numar telefon ---> ${phone.trim()}`,
+      `${contactName.trim()} ---> ${phone.trim()}`,
       scheduleFormatted,
       `Suma ---> ${price.trim()} lei`,
     ].join("\n\n");
@@ -135,6 +137,7 @@ export function useCalendarForm() {
         text: "Evenimentul a fost adăugat cu succes în Google Calendar!",
       });
 
+      setContactName("");
       setPhone("");
       setScheduleItems([{ location: "", timeSlot: "" }]);
       setPrice("");
@@ -156,6 +159,7 @@ export function useCalendarForm() {
       eventDate,
       startTime,
       endTime,
+      contactName,
       phone,
       scheduleItems,
       price,
@@ -169,6 +173,7 @@ export function useCalendarForm() {
       setEventDate,
       setStartTime,
       setEndTime,
+      setContactName,
       setPhone: (val: string) => setPhone(val.replace(/\D/g, "")),
       handleScheduleItemChange,
       addScheduleItem,

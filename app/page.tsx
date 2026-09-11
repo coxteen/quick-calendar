@@ -35,9 +35,11 @@ export default function Home() {
           />
 
           <EventDetailsFields
+            contactName={state.contactName}
             phone={state.phone}
             scheduleItems={state.scheduleItems}
             price={state.price}
+            onContactNameChange={actions.setContactName}
             onPhoneChange={actions.setPhone}
             onScheduleItemChange={actions.handleScheduleItemChange}
             onAddScheduleItem={actions.addScheduleItem}
