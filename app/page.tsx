@@ -6,6 +6,7 @@ import { EventTypeSelector } from "./components/EventTypeSelector";
 import { DateTimeRow } from "./components/DateTimeRow";
 import { EventDetailsFields } from "./components/EventDetailsFields";
 import { StatusAlert } from "./components/StatusAlert";
+import { ColorSelector } from "./components/ColorSelector";
 
 export default function Home() {
   const { state, actions } = useCalendarForm();
@@ -45,6 +46,11 @@ export default function Home() {
             onAddScheduleItem={actions.addScheduleItem}
             onRemoveScheduleItem={actions.removeScheduleItem}
             onPriceChange={actions.setPrice}
+          />
+
+          <ColorSelector
+            selectedColorId={state.colorId}
+            onSelectColor={actions.setColorId}
           />
 
           <div className="border-t border-neutral-800 pt-4">

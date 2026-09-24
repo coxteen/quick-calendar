@@ -5,8 +5,9 @@ interface CreateEventPayload {
   title: string;
   description: string;
   location: string;
-  startTime: string; // ISO 8601 string
+  startTime: string;
   durationMinutes: number;
+  colorId?: string; 
 }
 
 function validatePayload(body: any): { valid: boolean; error?: string } {
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
         location: body.location.trim(),
         start: { dateTime: start.toISOString() },
         end: { dateTime: end.toISOString() },
-        colorId: "11", // ID 11 reprezinta culoarea Tomato (Rosu)
+        colorId: body.colorId || "11",
       },
     });
 

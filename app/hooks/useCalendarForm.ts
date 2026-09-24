@@ -23,6 +23,8 @@ export function useCalendarForm() {
     text: string;
   } | null>(null);
 
+  const [colorId, setColorId] = useState("11");
+
   useEffect(() => {
     const savedKey = localStorage.getItem("qc_api_key");
     if (savedKey) setApiKey(savedKey);
@@ -126,6 +128,7 @@ export function useCalendarForm() {
           location: allLocations,
           startTime: startDateTime.toISOString(),
           durationMinutes,
+          colorId,
         }),
       });
 
@@ -166,6 +169,7 @@ export function useCalendarForm() {
       apiKey,
       loading,
       statusMessage,
+      colorId,
     },
     actions: {
       setEventType,
@@ -181,6 +185,7 @@ export function useCalendarForm() {
       setPrice: (val: string) => setPrice(val.replace(/\D/g, "")),
       handleApiKeyChange,
       handleSubmit,
+      setColorId,
     },
   };
 }
