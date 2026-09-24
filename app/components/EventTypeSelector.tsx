@@ -1,6 +1,6 @@
 import { theme } from "../constants/theme";
 
-export type EventType = "Botez" | "Cununie Civila" | "Majorat" | "Altul";
+export type EventType = "Botez" | "Cununie Religioasa" | "Botez + Cununie Religioasa" | "Cununie Civila" | "Majorat" | "Altul";
 
 interface EventTypeSelectorProps {
   value: EventType;
@@ -9,7 +9,7 @@ interface EventTypeSelectorProps {
   onChangeCustomTitle: (val: string) => void;
 }
 
-const EVENT_OPTIONS: EventType[] = ["Botez", "Cununie Civila", "Majorat", "Altul"];
+const EVENT_OPTIONS: EventType[] = ["Botez", "Cununie Religioasa", "Botez + Cununie Religioasa", "Cununie Civila", "Majorat", "Altul"];
 
 export function EventTypeSelector({
   value,
@@ -22,7 +22,7 @@ export function EventTypeSelector({
       <label className={`${theme.labels.standard} mb-2`}>
         Nume Eveniment <span className="text-rose-500">*</span>
       </label>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
         {EVENT_OPTIONS.map((type) => {
           const isSelected = value === type;
           return (
