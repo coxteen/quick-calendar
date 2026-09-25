@@ -2,8 +2,7 @@
 
 > Create detailed Google Calendar events from a focused, easy-to-use form.
 
-<!-- Optional: Demo Preview -->
-<!-- ![Demo / Screenshot](./assets/demo.png) -->
+![Application Preview](./assets/preview.png)
 
 ---
 
