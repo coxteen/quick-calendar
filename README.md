@@ -98,13 +98,6 @@ The complete workflow is available directly from the website: open the site, fil
 
 Quick Calendar is deployed on Vercel. The production deployment requires the same environment variables described above to be configured in the Vercel project settings.
 
-## 🗺️ Roadmap
-
-- [ ] Add automated unit and end-to-end tests.
-- [ ] Add a safe environment-variable example file.
-- [ ] Add deployment documentation and production configuration guidance.
-- [ ] Improve authentication so API credentials do not need to be stored in browser local storage.
-
 ## 📄 License & Contact
 
 No license file has been added yet.
