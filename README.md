@@ -2,6 +2,8 @@
 
 > Create structured Google Calendar events instantly through a clean, single-screen workflow.
 
+![Application Demo](./assets/demo.gif)
+
 ## 📌 About & Motivation
 
 - **Description:** Quick Calendar is an event-creation tool built with Next.js, allowing structured scheduling directly into Google Calendar. It bundles event type, time intervals, contact details, multi-stop schedule locations, pricing, and native calendar colors into a single submission.
