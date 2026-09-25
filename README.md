@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quick Calendar
 
-## Getting Started
+> Create detailed Google Calendar events from a focused, easy-to-use form.
 
-First, run the development server:
+<!-- Optional: Demo Preview -->
+<!-- ![Demo / Screenshot](./assets/demo.png) -->
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 About & Motivation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Description:** Quick Calendar is a Next.js application for creating Google Calendar events with structured event details. It combines event type, date and time, contact information, schedule locations, pricing, and calendar color into a single submission workflow. 
+* **Motivation:** The project was built to reduce the friction of manually creating detailed calendar entries and to keep recurring event information consistent.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Key Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Structured event creation:** Add event types, custom titles, dates, start and end times, contact details, schedule locations, and pricing.
+- **Google Calendar integration:** Submit validated event data to Google Calendar through a server-side API route.
+- **Configurable event styling:** Choose a Google Calendar color for each new event.
+- **Local API key persistence:** Keep the API secret key in the browser's local storage for subsequent submissions.
+- **Validation and feedback:** Receive inline success and error messages when required fields are missing or the request fails.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+* **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS 4
+* **Backend & APIs:** Next.js App Router API route, Google Calendar API, `googleapis`
+* **Database & ORM:** No database or ORM; configuration is provided through environment variables
+* **Tooling & DevOps:** npm, TypeScript, Next.js development and production commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Node.js 18 or newer
+* npm
+* A Google Cloud service account with access to the target Google Calendar
+
+### Installation & Local Setup
+
+1. **Clone the repository:**
+
+	```bash
+	git clone https://github.com/coxteen/quick-calendar.git
+	cd quick-calendar
+	```
+
+2. **Configure environment variables:** Create a `.env.local` file in the project root:
+
+	```bash
+	API_SECRET_KEY=your-application-secret
+	GOOGLE_CLIENT_EMAIL=your-service-account-email
+	GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+	GOOGLE_CALENDAR_ID=your-google-calendar-id
+	```
+
+	Share the target Google Calendar with the service account email and grant it permission to manage events. Keep these values private and do not commit `.env.local`.
+
+3. **Install dependencies:**
+
+	```bash
+	npm install
+	```
+
+4. **Run the development server:**
+
+	```bash
+	npm run dev
+	```
+
+	The application will be accessible at `http://localhost:3000`.
+
+5. **Build and run the production server:**
+
+	```bash
+	npm run build
+	npm run start
+	```
+
+	Automated tests are not currently configured in `package.json`.
+
+## 📖 Quick Start Tutorial
+
+1. Open `http://localhost:3000` and choose an event type, or enter a custom title.
+2. Enter the event date, time range, contact details, one or more schedule locations, and the price.
+3. Choose a Google Calendar color, enter the API secret, and select **Adaugă Eveniment**.
+4. Confirm the success message, then open Google Calendar to review the newly created event.
+
+## 🗺️ Roadmap
+
+- [ ] Add automated unit and end-to-end tests.
+- [ ] Add a safe environment-variable example file.
+- [ ] Add deployment documentation and production configuration guidance.
+- [ ] Improve authentication so API credentials do not need to be stored in browser local storage.
+
+## 📄 License & Contact
+
+No license file has been added yet.
+
+- **Author:** [Project maintainer](https://github.com/coxteen)
+- **GitHub:** [coxteen/quick-calendar](https://github.com/coxteen/quick-calendar)
