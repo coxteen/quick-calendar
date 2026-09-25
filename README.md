@@ -28,7 +28,7 @@
 * **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS 4
 * **Backend & APIs:** Next.js App Router API route, Google Calendar API, `googleapis`
 * **Database & ORM:** No database or ORM; configuration is provided through environment variables
-* **Tooling & DevOps:** npm, TypeScript, Next.js development and production commands
+* **Tooling & DevOps:** npm, TypeScript, Next.js development and production commands, Vercel deployment
 
 ---
 
@@ -85,10 +85,18 @@
 
 ## 📖 Quick Start Tutorial
 
-1. Open `http://localhost:3000` and choose an event type, or enter a custom title.
-2. Enter the event date, time range, contact details, one or more schedule locations, and the price.
-3. Choose a Google Calendar color, enter the API secret, and select **Adaugă Eveniment**.
+The application is deployed with [Vercel](https://vercel.com). No installation is required to use the deployed version:
+
+1. Open the deployed Quick Calendar site.
+2. Specify the event details, including the event type, date, time range, contact information, schedule locations, price, and calendar color.
+3. Enter the secret key and select **Adaugă Eveniment**.
 4. Confirm the success message, then open Google Calendar to review the newly created event.
+
+The complete workflow is available directly from the website: open the site, fill in the event details, enter the secret key, and submit the form.
+
+## ☁️ Deployment
+
+Quick Calendar is deployed on Vercel. The production deployment requires the same environment variables described above to be configured in the Vercel project settings.
 
 ## 🗺️ Roadmap
 
