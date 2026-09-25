@@ -42,7 +42,7 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/coxteen/quick-calendar.git](https://github.com/coxteen/quick-calendar.git)
+   git clone https://github.com/coxteen/quick-calendar.git
    cd quick-calendar
    ```
 
