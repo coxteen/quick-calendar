@@ -1,34 +1,30 @@
 # Quick Calendar
 
-> Create detailed Google Calendar events from a focused, easy-to-use form.
-
-![Application Demo](./assets/demo.gif)
-
----
+> Create structured Google Calendar events instantly through a clean, single-screen workflow.
 
 ## 📌 About & Motivation
 
-* **Description:** Quick Calendar is a Next.js application for creating Google Calendar events with structured event details. It combines event type, date and time, contact information, schedule locations, pricing, and calendar color into a single submission workflow. 
-* **Motivation:** The project was built for personal use, helping me to eliminate repetitive work of manually creating detailed calendar entries and to keep recurring event information consistent. 
+- **Description:** Quick Calendar is an event-creation tool built with Next.js, allowing structured scheduling directly into Google Calendar. It bundles event type, time intervals, contact details, multi-stop schedule locations, pricing, and native calendar colors into a single submission.
+- **Motivation:** Developed as a personal productivity tool to eliminate repetitive manual entry in Google Calendar, maintain consistent formatting for recurring bookings/tasks, and allow 1-tap additions from both desktop and mobile.
 
 ---
 
 ## ✨ Key Features
 
-- **Structured event creation:** Add event types, custom titles, dates, start and end times, contact details, schedule locations, and pricing.
-- **Google Calendar integration:** Submit validated event data to Google Calendar through a server-side API route.
-- **Configurable event styling:** Choose a Google Calendar color for each new event.
-- **Local API key persistence:** Keep the API secret key in the browser's local storage for subsequent submissions.
-- **Validation and feedback:** Receive inline success and error messages when required fields are missing or the request fails.
+- **Structured Event Templates:** Pre-fill or customize event types, titles, date/time ranges, contact info, multi-location stops, and pricing.
+- **Direct API Synchronization:** Creates events silently in Google Calendar via server-side Google Calendar API routes.
+- **Native Color Selector:** Choose from official Google Calendar event colors.
+- **Local Credential Persistence:** Keeps the API authorization secret saved in `localStorage` for effortless subsequent additions.
+- **Mobile & Desktop Ready:** Fully responsive interface designed to be pinned on desktop or installed as a standalone PWA on mobile.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS 4
-* **Backend & APIs:** Next.js App Router API route, Google Calendar API, `googleapis`
-* **Database & ORM:** No database or ORM; configuration is provided through environment variables
-* **Tooling & DevOps:** npm, TypeScript, Next.js development and production commands, Vercel deployment
+- **Framework:** Next.js (App Router), React 19, TypeScript
+- **Styling:** Tailwind CSS
+- **Integrations:** Google Calendar API (`googleapis`)
+- **Infrastructure:** Serverless deployment on Vercel
 
 ---
 
@@ -36,78 +32,53 @@
 
 ### Prerequisites
 
-* Node.js 18 or newer
-* npm
-* A Google Cloud service account with access to the target Google Calendar
+- Node.js 18+ and npm
+- A Google Cloud project with the **Google Calendar API** enabled
+- A **Google Service Account** with its generated private key JSON
 
 ### Installation & Local Setup
 
 1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/coxteen/quick-calendar.git](https://github.com/coxteen/quick-calendar.git)
+   cd quick-calendar
+   ```
 
-	```bash
-	git clone https://github.com/coxteen/quick-calendar.git
-	cd quick-calendar
-	```
+1. **Configure environment variables:**
 
-2. **Configure environment variables:** Create a `.env.local` file in the project root:
+Create a `.env.local` file in the root folder:
 
-	```bash
-	API_SECRET_KEY=your-application-secret
-	GOOGLE_CLIENT_EMAIL=your-service-account-email
-	GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-	GOOGLE_CALENDAR_ID=your-google-calendar-id
-	```
+Fragment de cod
 
-	Share the target Google Calendar with the service account email and grant it permission to manage events. Keep these values private and do not commit `.env.local`.
+```
+API_SECRET_KEY="your-chosen-access-key"
+GOOGLE_CLIENT_EMAIL="service-account@project.iam.gserviceaccount.com"
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_CALENDAR_ID="your-email@gmail.com"
+```
+2. **Grant Calendar Permissions:**
 
-3. **Install dependencies:**
+> Open your Google Calendar settings, go to **Share with specific people**, add your `GOOGLE_CLIENT_EMAIL`, and set permission to **Make changes to events**.
+3. **Install dependencies & run:**
 
-	```bash
-	npm install
-	```
+Bash
 
-4. **Run the development server:**
+```
+npm install
+npm run dev
+```
 
-	```bash
-	npm run dev
-	```
-
-	The application will be accessible at `http://localhost:3000`.
-
-5. **Build and run the production server:**
-
-	```bash
-	npm run build
-	npm run start
-	```
-
-	Automated tests are not currently configured in `package.json`.
-
-## 📖 Quick Start Tutorial
-
-The application is deployed with [Vercel](https://vercel.com). No installation is required to use the deployed version:
-
-1. Open the deployed Quick Calendar site.
-2. Specify the event details, including the event type, date, time range, contact information, schedule locations, price, and calendar color.
-3. Enter the secret key and select **Adaugă Eveniment**.
-4. Confirm the success message, then open Google Calendar to review the newly created event.
-
-The complete workflow is available directly from the website: open the site, fill in the event details, enter the secret key, and submit the form.
+Open [http://localhost:3000](http://localhost:3000?utm_source=gemini) in your browser.
 
 ## ☁️ Deployment
+The project is designed to run seamlessly on **Vercel**:
 
-Quick Calendar is deployed on Vercel. The production deployment requires the same environment variables described above to be configured in the Vercel project settings.
+1. Push your repository to GitHub.
+2. Import the project into Vercel.
+3. Add the four environment variables (`API_SECRET_KEY`, `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_CALENDAR_ID`) in **Project Settings > Environment Variables**.
+4. Deploy. On mobile devices, open the deployed URL in Chrome/Safari and select **Add to Home Screen** to install it.
 
-## 🗺️ Roadmap
+## 📄 License & Author
 
-- [ ] Add automated unit and end-to-end tests.
-- [ ] Add a safe environment-variable example file.
-- [ ] Add deployment documentation and production configuration guidance.
-- [ ] Improve authentication so API credentials do not need to be stored in browser local storage.
-
-## 📄 License & Contact
-
-No license file has been added yet.
-
-- **Author:** [Project maintainer](https://github.com/coxteen)
-- **GitHub:** [coxteen/quick-calendar](https://github.com/coxteen/quick-calendar)
+- **Author:** Costin Ghiujan ([coxteen](https://www.google.com/search?q=https://github.com/coxteen&utm_source=gemini))
+- **License:** MIT (or Personal / Private use)
