@@ -68,7 +68,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000?utm_source=gemini) in your browser.
+Open [http://localhost:3000] in your browser.
 
 ## ☁️ Deployment
 The project is designed to run seamlessly on **Vercel**:
@@ -76,18 +76,10 @@ The project is designed to run seamlessly on **Vercel**:
 1. Push your repository to GitHub.
 2. Import the project into Vercel.
 3. Add the four environment variables (`API_SECRET_KEY`, `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_CALENDAR_ID`) in **Project Settings > Environment Variables**.
-4. Deploy. On mobile devices, open the deployed URL in Chrome/Safari and select **Add to Home Screen** to install it.
+4. Deploy.
 
-<<<<<<< HEAD
+
 ## 📄 License & Author
 
-- **Author:** Costin Ghiujan ([coxteen](https://www.google.com/search?q=https://github.com/coxteen&utm_source=gemini))
-- **License:** MIT (or Personal / Private use)
-=======
-## 📄 License & Contact
-
-No license file has been added yet.
-
-- **Author:** [Project maintainer](https://github.com/coxteen)
-- **GitHub:** [coxteen/quick-calendar](https://github.com/coxteen/quick-calendar)
->>>>>>> 7ddb424589bf2a468c161ef09d94d53d2896828b
+- **Author:** Costin-Daniel Ghiujan ([coxteen](https://github.com/coxteen))
+- **License:** MIT
