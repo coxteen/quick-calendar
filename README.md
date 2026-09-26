@@ -1,103 +1,145 @@
-# Quick Calendar
+<div align="center">
 
-> Create structured Google Calendar events instantly through a clean, single-screen workflow.
+# 📅 Quick Calendar
 
-![Application Demo](./assets/demo.gif)
+**Create structured Google Calendar events instantly through a clean, single-screen workflow.**
 
-## 📌 About & Motivation
+[![Next.js](https://img.shields.io/badge/Next.js-16.3.4-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](#-license--author)
 
-Quick Calendar is a personal productivity tool built with Next.js for creating structured Google Calendar entries faster and more consistently.
+[Live Demo](#) · [Report Bug](https://github.com/coxteen/quick-calendar/issues) · [Request Feature](https://github.com/coxteen/quick-calendar/issues)
 
-- **Description:** It brings together event type, time windows, contact details, multi-stop schedule locations, pricing, and official Google Calendar colors in a single streamlined form.
-- **Motivation:** The app was designed to eliminate repetitive manual entry, reduce formatting errors, and keep recurring bookings/tasks consistent across desktop and mobile usage.
+</div>
 
 ---
+
+<p align="center">
+  <img src="./assets/demo.gif" alt="Quick Calendar interactive demo" width="850">
+</p>
+
+---
+
+## 📌 Problem & Motivation
+
+Creating recurring or multi-detail appointments in Google Calendar can require navigating nested menus, setting colors manually, and copying client or route information between fields.
+
+**Quick Calendar** brings the complete workflow into one responsive form:
+
+- Multi-stop destinations and client details in a formatted description.
+- Native Google Calendar event colors.
+- Date, time buffers, and custom pricing fields.
+- A focused experience with no unnecessary context switching.
 
 ## ✨ Key Features
 
-- **Structured event templates:** Add or customize titles, event types, date/time ranges, contact info, route stops, and pricing.
-- **Direct Google Calendar sync:** Submit data through a server-side API route to create events automatically.
-- **Native color selection:** Choose from Google Calendar’s built-in event colors.
-- **Local credential persistence:** Store the API secret in the browser for fast follow-up submissions.
-- **Responsive interface:** Works well on desktop and mobile, with support for standalone app-like usage.
+- **⚡ Streamlined event submission:** Define titles, client metadata, multi-stop route details, and billing in a few taps.
+- **🎨 Native color mapping:** Choose from Google Calendar’s official event colors directly from the form.
+- **🔒 Server-side synchronization:** Uses Google Service Account authentication inside a Next.js API route. The private key remains server-side.
+- **💾 Local key persistence:** Stores the submission authorization key in `localStorage` for fast recurring use.
+- **📱 PWA-ready:** Optimized for mobile browsers and standalone **Add to Home Screen** usage.
 
----
+## 🧠 Architecture & How It Works
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Client / User
+    participant Browser as Browser / Mobile PWA
+    participant NextApi as Next.js API Route (/api/events)
+    participant Google as Google Calendar API
+
+    User->>Browser: Fill form with event data
+    Browser->>NextApi: POST /api/events
+    Note over NextApi: Validates the request and payload
+    NextApi->>Google: Authenticate with Google Service Account
+    NextApi->>Google: calendar.events.insert()
+    Google-->>NextApi: Event created
+    NextApi-->>Browser: Success response and event link
+    Browser->>User: Show confirmation
+```
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js (App Router), React 19, TypeScript
-- **Styling:** Tailwind CSS
-- **Integration:** Google Calendar API via `googleapis`
-- **Deployment:** Vercel
-
----
+| Category | Technology |
+| --- | --- |
+| Framework | [Next.js 16](https://nextjs.org/) (App Router), [React 19](https://react.dev/) |
+| Language | [TypeScript](https://www.typescriptlang.org/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) |
+| API integration | [`googleapis`](https://github.com/googleapis/google-api-nodejs-client) with Service Account authentication |
+| Deployment | [Vercel](https://vercel.com/) |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-Before starting, make sure you have:
+- **Node.js** 18.17+ or 20+
+- **npm**, pnpm, or yarn
+- A **Google Cloud project** with the Google Calendar API enabled
+- A **Google Service Account** with an exported JSON key
 
-- Node.js 18+
-- npm
-- A Google Cloud project with the Google Calendar API enabled
-- A Google service account with a generated private key
+### 1. Installation
 
-### Installation & Local Setup
+```bash
+git clone https://github.com/coxteen/quick-calendar.git
+cd quick-calendar
+npm install
+```
 
-1. Clone the repository:
+### 2. Environment Setup
 
-   ```bash
-   git clone https://github.com/coxteen/quick-calendar.git
-   cd quick-calendar
-   ```
+Create a `.env.local` file in the root directory:
 
-2. Create a `.env.local` file in the project root with the following values:
+```env
+API_SECRET_KEY="your-custom-passphrase"
+GOOGLE_CLIENT_EMAIL="quick-cal@your-project.iam.gserviceaccount.com"
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_CALENDAR_ID="your-personal-or-shared-calendar@gmail.com"
+```
 
-   ```env
-   API_SECRET_KEY="your-chosen-access-key"
-   GOOGLE_CLIENT_EMAIL="service-account@project.iam.gserviceaccount.com"
-   GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-   GOOGLE_CALENDAR_ID="your-email@gmail.com"
-   ```
+In Google Calendar, open **Settings and sharing** > **Share with specific people**, add `GOOGLE_CLIENT_EMAIL`, and grant permission to **Make changes to events**.
 
-3. Grant calendar access:
+> Keep `.env.local` private and never commit service account credentials to source control.
 
-   Open your Google Calendar settings, go to **Share with specific people**, add your `GOOGLE_CLIENT_EMAIL`, and set permission to **Make changes to events**.
+### 3. Run Locally
 
-4. Install dependencies and run the app:
+```bash
+npm run dev
+```
 
-   ```bash
-   npm install
-   npm run dev
-   ```
-
-5. Open the app in your browser:
-
-   ```text
-   http://localhost:3000
-   ```
-
----
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## ☁️ Deployment
 
-This project is designed to deploy easily on Vercel.
-
 1. Push the repository to GitHub.
-2. Create a new project in Vercel.
-3. Add the required environment variables in **Project Settings > Environment Variables**:
-   - `API_SECRET_KEY`
-   - `GOOGLE_CLIENT_EMAIL`
-   - `GOOGLE_PRIVATE_KEY`
-   - `GOOGLE_CALENDAR_ID`
+2. Import the project into your [Vercel Dashboard](https://vercel.com/).
+3. Add the four environment variables from `.env.local` under **Project Settings** > **Environment Variables**.
 4. Deploy the app.
 
-On mobile devices, open the deployed app in Chrome or Safari and choose **Add to Home Screen** for a PWA-like experience.
+For `GOOGLE_PRIVATE_KEY`, preserve the escaped newline characters (`\n`) when entering the value in Vercel.
 
----
+## 🗺️ Roadmap
+
+- [x] Single-screen Google Calendar event creation
+- [x] Multi-stop address and route formatting
+- [x] Native color-picker integration
+- [ ] Add offline queue support with IndexedDB
+- [ ] Support multiple target calendar IDs
+- [ ] Add direct WhatsApp or SMS event confirmations
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+1. Fork the project.
+2. Create a feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
+4. Push the branch: `git push origin feature/AmazingFeature`
+5. Open a pull request.
 
 ## 📄 License & Author
 
-- **Author:** Costin Ghiujan ([coxteen](https://github.com/coxteen))
+- **Author:** Costin Ghiujan ([`@coxteen`](https://github.com/coxteen))
 - **License:** MIT
