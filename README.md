@@ -77,8 +77,9 @@ sequenceDiagram
 
 - **Node.js** 18.17+ or 20+
 - **npm**, pnpm, or yarn
-- A **Google Cloud project** with the Google Calendar API enabled
-- A **Google Service Account** with an exported JSON key
+- A Google account with access to Google Calendar and Google Cloud Console
+
+---
 
 ### 1. Installation
 
@@ -88,28 +89,66 @@ cd quick-calendar
 npm install
 ```
 
-### 2. Environment Setup
+### 2. Google Cloud & Calendar Configuration
+
+To allow the server to create events on your behalf without manual login popups, you need a **Google Service Account**:
+
+1. **Create or select a project:**
+  - Open the [Google Cloud Console](https://console.cloud.google.com/).
+  - Open the project dropdown, select **New Project**, and name it (for example, `quick-calendar`).
+
+2. **Enable the Google Calendar API:**
+  - In the sidebar, open **APIs & Services** > **Library**.
+  - Search for **Google Calendar API**, select it, and click **Enable**.
+
+3. **Create a service account:**
+  - Go to **APIs & Services** > **Credentials**.
+  - Click **+ Create Credentials** and choose **Service account**.
+  - Give it a name, such as `calendar-sync`, then click **Create and Continue**.
+  - You can skip project role assignments and click **Done**.
+
+4. **Generate the JSON private key:**
+  - In the Credentials table, click the new service account email.
+  - Open the **Keys** tab.
+  - Click **Add Key** > **Create new key**, select **JSON**, and click **Create**.
+  - Store the downloaded `.json` file securely.
+
+5. **Share your calendar with the service account:**
+  - Open [Google Calendar](https://calendar.google.com/).
+  - Hover over the calendar you want to use, click the three dots, and select **Settings and sharing**.
+  - Scroll to **Share with specific people or groups** and click **Add people and groups**.
+  - Paste the `client_email` value from the downloaded JSON file.
+  - Set permissions to **Make changes to events** and click **Send**.
+
+### 3. Environment Variables Setup
 
 Create a `.env.local` file in the root directory:
 
 ```env
 API_SECRET_KEY="your-custom-passphrase"
-GOOGLE_CLIENT_EMAIL="quick-cal@your-project.iam.gserviceaccount.com"
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-GOOGLE_CALENDAR_ID="your-personal-or-shared-calendar@gmail.com"
+GOOGLE_CLIENT_EMAIL="calendar-sync@your-project.iam.gserviceaccount.com"
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgk...YourKey...\n-----END PRIVATE KEY-----\n"
+GOOGLE_CALENDAR_ID="your-email@gmail.com"
 ```
 
-In Google Calendar, open **Settings and sharing** > **Share with specific people**, add `GOOGLE_CLIENT_EMAIL`, and grant permission to **Make changes to events**.
+#### Where to find each value
 
-> Keep `.env.local` private and never commit service account credentials to source control.
+| Variable | Source | Description |
+| --- | --- | --- |
+| `API_SECRET_KEY` | Chosen by you | Any secure password or phrase. You will also enter this key in the app to authenticate event submissions. |
+| `GOOGLE_CLIENT_EMAIL` | Downloaded JSON file | The `client_email` property, which looks like `...@<project-id>.iam.gserviceaccount.com`. |
+| `GOOGLE_PRIVATE_KEY` | Downloaded JSON file | The `private_key` property. Keep the entire block, including the `BEGIN PRIVATE KEY` and `END PRIVATE KEY` lines. |
+| `GOOGLE_CALENDAR_ID` | Google Calendar settings | Usually your main Google email address. For secondary calendars, find it under **Settings and sharing** > **Integrate calendar** > **Calendar ID**. |
 
-### 3. Run Locally
+> ⚠️ **Security note:** Never commit `.env.local` or the downloaded `.json` file to GitHub. They are already listed in `.gitignore`.
+
+### 4. Run Locally
 
 ```bash
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## ☁️ Deployment
 
