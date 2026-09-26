@@ -101,7 +101,6 @@ export function useCalendarForm() {
       .map((item) => `${item.location.trim()} ---> ${item.timeSlot.trim()}`)
       .join("\n");
 
-    // Format descriere cu Contact (Nume ---> Numar de telefon)
     const formattedDescription = [
       `${contactName.trim()} ---> ${phone.trim()}`,
       scheduleFormatted,
