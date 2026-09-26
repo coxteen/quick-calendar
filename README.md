@@ -10,7 +10,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](#-license--author)
 
-[Live Demo](#) · [Report Bug](https://github.com/coxteen/quick-calendar/issues) · [Request Feature](https://github.com/coxteen/quick-calendar/issues)
+[Report Bug](https://github.com/coxteen/quick-calendar/issues) · [Request Feature](https://github.com/coxteen/quick-calendar/issues)
 
 </div>
 
@@ -24,7 +24,7 @@
 
 ## 📌 Problem & Motivation
 
-Creating recurring or multi-detail appointments in Google Calendar can require navigating nested menus, setting colors manually, and copying client or route information between fields.
+Creating Google Calendar events that require the same details such as event type, date and time, client info, location and pricing is tedious and repetitive. Additionally, it's easy to forget a crucial detail along the way.
 
 **Quick Calendar** brings the complete workflow into one responsive form:
 
@@ -119,25 +119,6 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser.
 4. Deploy the app.
 
 For `GOOGLE_PRIVATE_KEY`, preserve the escaped newline characters (`\n`) when entering the value in Vercel.
-
-## 🗺️ Roadmap
-
-- [x] Single-screen Google Calendar event creation
-- [x] Multi-stop address and route formatting
-- [x] Native color-picker integration
-- [ ] Add offline queue support with IndexedDB
-- [ ] Support multiple target calendar IDs
-- [ ] Add direct WhatsApp or SMS event confirmations
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome.
-
-1. Fork the project.
-2. Create a feature branch: `git checkout -b feature/AmazingFeature`
-3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
-4. Push the branch: `git push origin feature/AmazingFeature`
-5. Open a pull request.
 
 ## 📄 License & Author
 
