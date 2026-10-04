@@ -2,15 +2,13 @@
 
 # 📅 Quick Calendar
 
-**Create structured Google Calendar events instantly through a clean, single-screen workflow.**
+**Create structured Google Calendar events instantly through a clean, single-screen workflow**
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.3.4-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](#-license--author)
-
-[Report Bug](https://github.com/coxteen/quick-calendar/issues) · [Request Feature](https://github.com/coxteen/quick-calendar/issues)
 
 </div>
 
@@ -161,5 +159,5 @@ For `GOOGLE_PRIVATE_KEY`, preserve the escaped newline characters (`\n`) when en
 
 ## 📄 License & Author
 
-- **Author:** Costin Ghiujan ([`@coxteen`](https://github.com/coxteen))
-- **License:** MIT
+- **Author:** [Costin Ghiujan](https://github.com/coxteen)
+- **License:** Released unde the [MIT License](LICENSE)
