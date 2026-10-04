@@ -160,4 +160,4 @@ For `GOOGLE_PRIVATE_KEY`, preserve the escaped newline characters (`\n`) when en
 ## 📄 License & Author
 
 - **Author:** [Costin Ghiujan](https://github.com/coxteen)
-- **License:** Released unde the [MIT License](LICENSE)
+- **License:** Released unde the [MIT License](LICENSE).
